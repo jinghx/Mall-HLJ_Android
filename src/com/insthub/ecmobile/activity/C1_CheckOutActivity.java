@@ -66,8 +66,8 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
 	
 	private LinearLayout pay;
 	private TextView pay_type;
-	private LinearLayout dis;
-	private TextView dis_type;
+//	private LinearLayout dis;
+//	private TextView dis_type;
 	private LinearLayout invoice;
 	private TextView invoice_message;
 	
@@ -146,8 +146,8 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
 		
 		pay = (LinearLayout) findViewById(R.id.balance_pay);
 		pay_type = (TextView) findViewById(R.id.balance_pay_type);
-		dis = (LinearLayout) findViewById(R.id.balance_dis);
-		dis_type = (TextView) findViewById(R.id.balance_dis_type);
+//		dis = (LinearLayout) findViewById(R.id.balance_dis);
+//		dis_type = (TextView) findViewById(R.id.balance_dis_type);
 		invoice = (LinearLayout) findViewById(R.id.balance_invoice);
 		invoice_message = (TextView) findViewById(R.id.balance_invoice_message);
 		
@@ -162,7 +162,7 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
 		bonus_text = (TextView) findViewById(R.id.balance_bonus);
 		coupon = (TextView) findViewById(R.id.balance_coupon);
         totalPriceTextView = (TextView) findViewById(R.id.balance_total);
-		submit = (FrameLayout) findViewById(R.id.balance_submit);
+        submit = (FrameLayout) findViewById(R.id.balance_submit);
 		body = (LinearLayout) findViewById(R.id.balance_body);
         text_balance_redPaper=(TextView)findViewById(R.id.text_balance_redPaper);
         text_balance_score=(TextView)findViewById(R.id.text_balance_score);
@@ -171,7 +171,7 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
 
 		user.setOnClickListener(this);
 		pay.setOnClickListener(this);
-		dis.setOnClickListener(this);
+//		dis.setOnClickListener(this);
 		invoice.setOnClickListener(this);
 		goods.setOnClickListener(this);
 		redPaper.setOnClickListener(this);
@@ -210,11 +210,11 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
 			intent.putExtra("payment", paymentJSONString);
 			startActivityForResult(intent, REQUEST_PAYMENT);
 			break;
-		case R.id.balance_dis:
-			intent = new Intent(this, C3_DistributionActivity.class);
-			intent.putExtra("payment", paymentJSONString);
-			startActivityForResult(intent, REQUEST_Distribution);
-			break;
+//		case R.id.balance_dis:
+//			intent = new Intent(this, C3_DistributionActivity.class);
+//			intent.putExtra("payment", paymentJSONString);
+//			startActivityForResult(intent, REQUEST_Distribution);
+//			break;
 		case R.id.balance_invoice:
 			intent = new Intent(this, C4_InvoiceActivity.class);
 			intent.putExtra("payment", paymentJSONString);
@@ -273,43 +273,44 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
                 return;
             }
 
-            if (null == shipping)
-            {
-                ToastView toast1 = new ToastView(C1_CheckOutActivity.this, resourc.getString(R.string.warn_no_shipping));
-                toast1.setGravity(Gravity.CENTER, 0, 0);
-                toast1.show();
-                return;
-            }
+//            if (null == shipping)
+//            {
+//                ToastView toast1 = new ToastView(C1_CheckOutActivity.this, resourc.getString(R.string.warn_no_shipping));
+//                toast1.setGravity(Gravity.CENTER, 0, 0);
+//                toast1.show();
+//                return;
+//            }
 
 
-            if (checkCashOnDeliverOk(payment, shipping))
+            if (checkCashOnDeliverOk(payment/*, shipping*/))
             {
+            	Log.i("submit", "enter into if(checkCashOnDeliverOk)");
                 if (null != selectedBONUS)
                 {
-                    shoppingCartModel.flowDone(payment.pay_id, shipping.shipping_id, selectedBONUS.bonus_id, scoreNum, inv_type+"", inv_payee, inv_content+"");
+                    shoppingCartModel.flowDone(payment.pay_id, /*shipping.shipping_id*/ selectedBONUS.bonus_id, scoreNum, inv_type+"", inv_payee, inv_content+"");
                 }
                 else
-                {
-                    shoppingCartModel.flowDone(payment.pay_id, shipping.shipping_id, null, scoreNum, inv_type+"", inv_payee, inv_content+"");
+                {Log.i("submit", "enter into else(checkCashOnDeliverOk)");
+                    shoppingCartModel.flowDone(payment.pay_id, /*shipping.shipping_id,*/ null, scoreNum, inv_type+"", inv_payee, inv_content+"");
                 }
 
             }
-            else
-            {
-                ToastView toast1 = new ToastView(C1_CheckOutActivity.this, "该配送方式不支持货到付款");
-                toast1.setGravity(Gravity.CENTER, 0, 0);
-                toast1.show();
-            }
+//            else
+//            {
+//                ToastView toast1 = new ToastView(C1_CheckOutActivity.this, "该配送方式不支持货到付款");
+//                toast1.setGravity(Gravity.CENTER, 0, 0);
+//                toast1.show();
+//            }
 			break;
 		}
 		
 	}
 
-    public boolean checkCashOnDeliverOk(PAYMENT payment,SHIPPING shipping )
+    public boolean checkCashOnDeliverOk(PAYMENT payment/*,SHIPPING shipping*/ )
     {
-        if (null != payment && null != shipping)
+        if (null != payment /*&& null != shipping*/)
         {
-            if (payment.is_cod.equals("1") && shipping.support_cod.equals("0"))
+            if (payment.is_cod.equals("1") /*&& shipping.support_cod.equals("0")*/)
             {
                 return false;
             }
@@ -555,7 +556,7 @@ public class C1_CheckOutActivity extends BaseActivity implements OnClickListener
                    JSONObject shippingJSONObject = new JSONObject(shippingString);
                     shipping = new SHIPPING();
                     shipping.fromJson(shippingJSONObject);
-                    dis_type.setText(shipping.shipping_name);
+//                    dis_type.setText(shipping.shipping_name);
                     fees.setText(shipping.format_shipping_fee);
                     refreshTotalPrice();
                 }

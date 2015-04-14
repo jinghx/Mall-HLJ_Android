@@ -160,7 +160,7 @@
                     android:layout_height="0.1dp"
                     android:background="#c4c4c4" />
 
-                <LinearLayout
+                <!--  <LinearLayout
                     android:id="@+id/balance_dis"
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
@@ -202,7 +202,7 @@
                         android:layout_height="12dp"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/accsessory_arrow_right" />
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <View
                     android:layout_width="fill_parent"

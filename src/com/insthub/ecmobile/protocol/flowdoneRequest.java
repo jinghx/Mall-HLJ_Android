@@ -18,8 +18,8 @@ public class flowdoneRequest  extends Model
      @Column(name = "inv_payee")
      public String   inv_payee;
 
-     @Column(name = "shipping_id")
-     public String shipping_id;
+//     @Column(name = "shipping_id")
+//     public String shipping_id;
 
      @Column(name = "session")
      public SESSION   session;
@@ -48,7 +48,7 @@ public class flowdoneRequest  extends Model
 
           this.inv_payee = jsonObject.optString("inv_payee");
 
-          this.shipping_id = jsonObject.optString("shipping_id");
+//          this.shipping_id = jsonObject.optString("shipping_id");
           SESSION  session = new SESSION();
           session.fromJson(jsonObject.optJSONObject("session"));
           this.session = session;
@@ -69,7 +69,7 @@ public class flowdoneRequest  extends Model
           JSONArray itemJSONArray = new JSONArray();
           localItemObject.put("inv_type", inv_type);
           localItemObject.put("inv_payee", inv_payee);
-          localItemObject.put("shipping_id", shipping_id);
+//          localItemObject.put("shipping_id", shipping_id);
           if(null != session)
           {
             localItemObject.put("session", session.toJson());

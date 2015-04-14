@@ -323,8 +323,9 @@ public class ShoppingCartModel extends BaseModel {
     }
 
     // 订单生成
-    public void flowDone(String pay_id, String shipping_id, String bonus, String score, String inv_type, String inv_payee, String inv_content) {
-        flowdoneRequest request = new flowdoneRequest();
+    public void flowDone(String pay_id, /*String shipping_id*/ String bonus, String score, String inv_type, String inv_payee, String inv_content) {
+    	Log.i("submit", "enter into flowDone");
+    	flowdoneRequest request = new flowdoneRequest();
 
         BeeCallback<JSONObject> cb = new BeeCallback<JSONObject>() {
 
@@ -352,7 +353,7 @@ public class ShoppingCartModel extends BaseModel {
 
         request.session = SESSION.getInstance();
         request.pay_id = pay_id;
-        request.shipping_id = shipping_id;
+//        request.shipping_id = shipping_id;
         request.bonus = bonus;
         request.integral = score;
         if(!inv_content.equals("-1")) {

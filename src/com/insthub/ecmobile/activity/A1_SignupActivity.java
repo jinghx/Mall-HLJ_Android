@@ -103,38 +103,38 @@ public class A1_SignupActivity extends BaseActivity implements OnClickListener, 
     }
 
     //动态添加输入框
-    public void signupFields() {
-        edit = new HashMap<Integer, EditText>();
-
-        if (registerModel.signupfiledslist.size() > 0) {
-            body.setVisibility(View.VISIBLE);
-            for (int i = 0; i < registerModel.signupfiledslist.size(); i++) {
-                View view = LayoutInflater.from(this).inflate(R.layout.a1_register_item, null);
-                EditText goods_name = (EditText) view.findViewById(R.id.register_item_edit);
-                String nonull = resource.getString(R.string.not_null);
-
-                if (registerModel.signupfiledslist.get(i).need.equals("1")) { //判断是否是必填
-                    goods_name.setHint(registerModel.signupfiledslist.get(i).name + nonull);
-                } else {
-                    goods_name.setHint(registerModel.signupfiledslist.get(i).name);
-                }
-                if (registerModel.signupfiledslist.get(i).name.equals("MSN")) {
-                    goods_name.setInputType(InputType.TYPE_CLASS_TEXT);
-                } else {
-                    goods_name.setInputType(InputType.TYPE_CLASS_NUMBER);
-                }
-                View line = view.findViewById(R.id.register_item_line);
-                if (i == registerModel.signupfiledslist.size() - 1) {
-                    line.setVisibility(View.GONE);
-                }
-                edit.put(i, goods_name);
-                body.addView(view);
-            }
-        } else {
-            body.setVisibility(View.GONE);
-        }
-
-    }
+//    public void signupFields() {
+//        edit = new HashMap<Integer, EditText>();
+//
+//        if (registerModel.signupfiledslist.size() > 0) {
+//            body.setVisibility(View.VISIBLE);
+//            for (int i = 0; i < registerModel.signupfiledslist.size(); i++) {
+//                View view = LayoutInflater.from(this).inflate(R.layout.a1_register_item, null);
+//                EditText goods_name = (EditText) view.findViewById(R.id.register_item_edit);
+//                String nonull = resource.getString(R.string.not_null);
+//
+//                if (registerModel.signupfiledslist.get(i).need.equals("1")) { //判断是否是必填
+//                    goods_name.setHint(registerModel.signupfiledslist.get(i).name + nonull);
+//                } else {
+//                    goods_name.setHint(registerModel.signupfiledslist.get(i).name);
+//                }
+//                if (registerModel.signupfiledslist.get(i).name.equals("MSN")) {
+//                    goods_name.setInputType(InputType.TYPE_CLASS_TEXT);
+//                } else {
+//                    goods_name.setInputType(InputType.TYPE_CLASS_NUMBER);
+//                }
+//                View line = view.findViewById(R.id.register_item_line);
+//                if (i == registerModel.signupfiledslist.size() - 1) {
+//                    line.setVisibility(View.GONE);
+//                }
+//                edit.put(i, goods_name);
+//                body.addView(view);
+//            }
+//        } else {
+//            body.setVisibility(View.GONE);
+//        }
+//
+//    }
 
     @Override
     public void onClick(View v) {
@@ -191,26 +191,27 @@ public class A1_SignupActivity extends BaseActivity implements OnClickListener, 
                     ToastView toast = new ToastView(this, passw);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-                } else {
-                    StringBuffer sbf = new StringBuffer();
-                    for (int i = 0; i < registerModel.signupfiledslist.size(); ++i) {
-                        if (registerModel.signupfiledslist.get(i).need.equals("1") && edit.get(i).getText().toString().equals("")) {
-                            ToastView toast = new ToastView(this, req);
-                            toast.setGravity(Gravity.CENTER, 0, 0);
-                            toast.show();
-                            flag = false;
-                            break;
-                        }else{
-                            flag = true;
-                        }
-                        items.add(edit.get(i).getText().toString());
-                        sbf.append(edit.get(i).getText().toString() + "/");
-
-                        FIELD field = new FIELD();
-                        field.id = Integer.parseInt(registerModel.signupfiledslist.get(i).id);
-                        field.value = edit.get(i).getText().toString();
-                        fields.add(field);
-                    }
+                }
+                else {
+//                    StringBuffer sbf = new StringBuffer();
+//                    for (int i = 0; i < registerModel.signupfiledslist.size(); ++i) {
+//                        if (registerModel.signupfiledslist.get(i).need.equals("1") && edit.get(i).getText().toString().equals("")) {
+//                            ToastView toast = new ToastView(this, req);
+//                            toast.setGravity(Gravity.CENTER, 0, 0);
+//                            toast.show();
+//                            flag = false;
+//                            break;
+//                        }else{
+//                            flag = true;
+//                        }
+//                        items.add(edit.get(i).getText().toString());
+//                        sbf.append(edit.get(i).getText().toString() + "/");
+//
+//                        FIELD field = new FIELD();
+//                        field.id = Integer.parseInt(registerModel.signupfiledslist.get(i).id);
+//                        field.value = edit.get(i).getText().toString();
+//                        fields.add(field);
+//                    }
 
                     signup();
 
@@ -234,9 +235,11 @@ public class A1_SignupActivity extends BaseActivity implements OnClickListener, 
     public void OnMessageResponse(String url, JSONObject jo, AjaxStatus status)
             throws JSONException {
         if (registerModel.responseStatus.succeed == 1) {
-            if (url.endsWith(ApiInterface.USER_SIGNUPFIELDS)) {
-                signupFields();
-            } else if (url.endsWith(ApiInterface.USER_SIGNUP)) {
+//            if (url.endsWith(ApiInterface.USER_SIGNUPFIELDS)) {
+//                signupFields();
+//            } else 
+            	
+            	if (url.endsWith(ApiInterface.USER_SIGNUP)) {
                 Intent intent = new Intent();
                 intent.putExtra("login", true);
                 setResult(Activity.RESULT_OK, intent);
