@@ -124,7 +124,10 @@ public class GoodDetailDraft {
         for (int i = 0; i < selectedSpecification.size();i++)
         {
             SPECIFICATION_VALUE specification_value = selectedSpecification.get(i);
-            singlePrice += Float.valueOf(specification_value.price);
+            
+          
+			singlePrice += Float.valueOf(specification_value.price);
+		
         }
 
         return singlePrice*goodQuantity;

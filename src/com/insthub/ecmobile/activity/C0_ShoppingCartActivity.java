@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,10 +101,12 @@ public class C0_ShoppingCartActivity extends BaseActivity  implements BusinessRe
 
             @Override
             public void onClick(View v) {
-            	
+//            	Log.i("footer_balance", "in onclick");
             	addressModel.getAddressList();
             }
         });
+        
+        Log.i("footer_balance", "out onclick");
 
         shoppingCartModel = new ShoppingCartModel(this);
         shoppingCartModel.addResponseListener(this);
@@ -188,6 +191,7 @@ public class C0_ShoppingCartActivity extends BaseActivity  implements BusinessRe
         	
         }  else if(url.endsWith(ApiInterface.ADDRESS_LIST)) {
 			if(addressModel.addressList.size() == 0) {
+				Log.i("footer_balance", addressModel.addressList.size()+"");
 				Intent intent = new Intent(C0_ShoppingCartActivity.this, F1_NewAddressActivity.class);
 				startActivity(intent);
 			} else {

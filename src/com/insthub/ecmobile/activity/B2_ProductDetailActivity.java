@@ -41,6 +41,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -390,6 +391,7 @@ public class B2_ProductDetailActivity extends BaseActivity implements BusinessRe
 
     void cartCreate()
     {
+//    	Log.i("addtocartapi", "进入了cartCreate（）");
         ArrayList<Integer> specIdList = new ArrayList<Integer>();
 
         boolean isRedrectToSpecification = false;
