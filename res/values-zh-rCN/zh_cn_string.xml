@@ -369,4 +369,6 @@
 <string name="alipay">支付宝支付</string>
 <string name="alipay_wap">支付宝wap支付</string>
 <string name="username_or_password_error">用户名或密码错误</string>
+<string name="register_school">学校</string>
+<string name="school_area">学校</string>
 </resources>

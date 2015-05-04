@@ -9,6 +9,7 @@
 <string name="address_phone">Mobile (required)</string>
 <string name="address_zip">Postal / ZIP code</string>
 <string name="address_area">Country</string>
+<string name="school_area">School</string>
 <string name="address_address">Address (required)</string>
 <string name="address_add">Add address</string>
 <string name="select_address">Select address</string>
@@ -82,6 +83,7 @@
 <string name="redpaper_input">Please enter a score</string>
 <string name="register_regist">Sign Up</string>
 <string name="register_email">E-mail</string>
+<string name="register_school">School</string>
 <string name="register_confirm">Re-type password</string>
 <string name="search_input">Search</string>
 <string name="setting_picture">Picture resolution</string>
